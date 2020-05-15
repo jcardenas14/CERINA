@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+  
+<head>
+<title>Welcome</title>
+</head>
+
+<body>
+
+<main style="background-color: #F9F9F9">
+  <div class="container-fluid" style="margin-left:10%; margin-right:10%">
+    <div class="col-xs-12">
+      <h1 style="color:#7d7799">
+        <span style="color:rgb(153, 50, 204);"><strong>C</strong></span>OMPETING 
+        <span style="color:rgb(153, 50, 204);"><strong>E</strong></span>NDOGENOUS 
+        <span style="color:rgb(153, 50, 204);"><strong>R</strong></span>NA for 
+        <span style="color:rgb(153, 50, 204);"><strong>IN</strong></span>TEGRATIVE
+        <span style="color:rgb(153, 50, 204);"><strong>A</strong></span>NNOTATIONS
+      </h1>
+      <hr>
+      <img src="cerina_overview_figure.jpg" width = "50%">
+      <br>
+      <br>
+      <h3><strong style="color:rgb(153, 50, 204)">Introduction</strong></h3>
+      <p>
+        The CERINA application was developed as a resource for researchers to infer circRNA function under the competing endogenous RNA (ceRNA) framework outlined in <a>Cerina paper</a>. Paired circRNA, linear RNA, and miRNA expression data across 11 human tissues from ENCODE were analyzed and integrated using Pareto optimality to rank circRNA-miRNA and miRNA-linRNA interactions. These rankings are the driving force behind the Cerina methodology and many of the visualizations/tables users will encounter in the app. All data has been processed, filtered, and normalized according to the procedures outlined in the paper. 
+      </p>
+      <h3><strong style="color:rgb(153, 50, 204)">Definitions & assumptions</strong></h3>
+      <h4><strong><i>Normalization</i></strong></h4>
+      <p>
+        By default, linear RNA and miRNA data are reported using CPM (counts per million) and circRNA data are reported using SRPBM (spliced reads per billion mapping). However, users are given the option to visualize all figures/tables using DESeq2 normalized counts via check-boxes. Throughout the documentation, we refer to normalized counts (either CPM, SRPBM, or DESeq2) as expression.  
+      </p>
+      <h4><strong><i>Tissue specificity</i></strong></h4>
+      <p>
+        We defined a circRNA as "tissue specific" if, for a given tissue, it has mean log2 DESeq2 normalized count &#8805; 2 and at least 2 fold higher expression compared to the second highest expressed tissue. Throughout CERINA, circRNAs are colored according to their tissue specificity and are labeled as "unspecific" if the criteria are not met. 
+      </p>
+      <h4><strong><i>Network edge weights</i></strong></h4>
+      <p>
+        Numerous interactions are depicted in CERINA via networks whose edges have been weighted to reflect the strength of interaction:
+      </p>
+        <ul style="font-size: 16px;">
+          <li>
+            <strong>circRNA-miRNA</strong> - weighted by pareto interaction score
+          </li>
+          <li>
+            <strong>miRNA-gene</strong> - weighted by pareto interaction score
+          </li>
+          <li>
+            <strong>circRNA-circRNA</strong> - weighted by spearman correlation
+          </li>
+          <li>
+            <strong>circRNA-gene</strong> - weighted by empircal CDF of -log10(pvalue), where pvalues are obtained from the gene level permutation test.
+          </li>
+       </ul>
+      <p>
+       All other interactions (i.e. gene-function, miRNA-function, circRNA-function) have been given the same weight of 1.
+      </p>
+      <h4><strong><i>Searching rules</i></strong></h4>
+      <ul>
+          <li>
+            <p>
+              <strong>linear RNA</strong> - Search by Ensembl ID or gene symbol.
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>miRNA</strong> - Search using 'hsa-xxx-xxx' format.    
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>circRNA</strong> - Search using chromosome location, ciri2 ID, circBase ID, circAtlas ID (hg19), or parental gene symbol. When searching by gene symbol, an additional input appears listing all circRNAs sharing the same parental gene; users can then select a circRNA from the list. 
+            </p>
+          </li>
+        </ul>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

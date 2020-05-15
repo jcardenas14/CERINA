@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+  
+<head>
+  <title>Data Exploration</title>
+</head>
+
+<body>
+
+<main style="background-color: #F9F9F9">
+  <div class="container-fluid" style="margin-left:10%; margin-right:10%">
+  <div class="col-xs-12">
+    <h2><strong>Data Exploration</strong></h2>
+    <hr>
+    <div class="container-fluid">
+      <h3 style="color:rgb(153, 50, 204);margin-top:0%"><strong>Hierarchical Clustering</strong></h3>
+      <div class="col-xs-12">
+        <p>
+          Users can view dendrograms of total RNA-Seq, miRNA-Seq, and circRNA-Seq samples across 11 tissues. The data were normalized using DESeq2, log2 transformed, and clustered using Ward's method.
+        </p>
+        <br>
+        <img src="data_exploration_clustering.jpg" width="75%" height="auto">
+      </div>
+      <div class="col-xs-12">
+        <hr>
+        <h3 style="color:rgb(153, 50, 204);margin-top:0px"><strong>Expression Profile</strong></h3>
+        <p>
+          Users can enter a linear RNA, miRNA, or circRNA to visualize barplots of mean expression for each tissue. For log2 transformed data, we take the log of the mean expression. When the mean expression is zero, we keep it at zero on the log2 scale.  
+        </p>
+        <br>
+        <img src="data_exploration_barplot.jpg" width="75%" height="auto">
+        <hr>
+        <h3 style="color:rgb(153, 50, 204);margin-top:0px"><strong>Correlation Analysis</strong></h3>
+        <p>
+          Users can visualize scatterplots between pairs of entered linear RNAs, miRNAs, and circRNAs. The Pearson and Spearman correlation values are displayed on top of the scatterplot.
+        </p>
+        <br>
+        <img src="data_exploration_correlation.jpg" width="75%" height="auto">
+      </div>
+    </div>
+  </div>
+  </div>
+</main>
+
+
+</body>
+</html>

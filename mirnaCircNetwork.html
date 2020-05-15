@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+  
+<head>
+  <title>Network</title>
+  <style>
+    p {font-size: 16px;}  
+  </style>
+</head>
+
+<body>
+
+<main style="background-color: #F9F9F9">
+
+  <div class="container-fluid" style="margin-left:10%; margin-right:10%">
+  <div class="col-xs-12">
+    <h2><strong>miRNA-circRNA Network</strong></h2>
+    <hr>
+    <div class="container-fluid">
+      <h3 style="color:rgb(153, 50, 204);margin-top:0%"><strong>Network</strong></h3>
+      <div class="container col-xs-12">
+         <p>
+          A network is created based on a user selected miRNA. CircRNAs with at least one MRE binding site to the miRNA are candidates for inclusion in the network. Adjustable filters on circRNA-miRNA pareto score and mean circRNA expression (in at least one tissue) are included to focus on circRNAs with stronger predicted interaction with the miRNA. In the example figure, circRNAs with pareto score &#8805; .80 and mean SRPBM &#8805; 1 in at least one tissue are included. In addition to interactions between the selected miRNA and candidate circRNAs, circRNA-circRNA interactions are also displayed. These interactions are weighted based on Spearman correlation. Users can adjust the correlation threshold to draw edges between circRNAs with Spearman correlation higher than a specified value. Hovering over individual nodes displays circRNA IDs and parental gene information, while hovering over edges shows the miRNA-circRNA interaction and its corresponding pareto score.
+        </p>
+        <br>
+      </div>
+      <div class="container col-xs-12">
+        <img src="mirna_circ_network_network.jpg" width="75%">
+      </div>
+    </div>
+    <hr>
+    <div class="container-fluid">
+      <h3 style="color:rgb(153, 50, 204);margin-top:0%"><strong>Table</strong></h3>
+      <div class="col-xs-12">
+        <p>
+          The table view provides more detailed information about the circRNAs in the network. This includes parental gene, tissue specificity, number of MRE binding sites, MRE per kb, pareto score, and mean expression for each tissue. Users can click on individual circRNAs to display barplots of mean expression levels for each tissue.
+        </p>
+        <br>
+      </div>
+      <div class="container col-xs-12">
+        <img src="mirna_circ_network_table.jpg" width="75%">
+      </div>
+    </div>
+    <hr>
+    <div class="container-fluid">
+      <h3 style="color:rgb(153, 50, 204);margin-top:0%"><strong>Heatmap</strong></h3>
+      <div class="col-xs-12">
+        <p>
+          The heatmap is linked to the network and plots circRNA mean log2 expression for each tissue. The rows in the heatmap correspond to circRNAs in the network and the columns are tissues. The colorbar on the left side of the heatmap highlights tissue specific circRNAs, while the colorbar on top corresponds to the tissues themselves. Both the circRNAs and tissues are clustered using Ward's method and their corresponding dendrograms are displayed. 
+        </p>
+        <br>
+      </div>
+      <div class="container col-xs-12">
+        <img src="mirna_circ_network_heatmap.jpg" width="75%">
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+
+</body>
+</html>

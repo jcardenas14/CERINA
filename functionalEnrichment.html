@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+  
+<head>
+  <title>Functional Enrichment</title>
+  <style>
+    p {font-size: 16px;}
+  </style>
+</head>
+
+<body>
+
+<main style="background-color: #F9F9F9">
+  <div class="container-fluid" style="margin-left:10%; margin-right:10%">
+  <div class="col-xs-12">
+    <h2><strong>Functional Enrichment</strong></h2>
+    <hr>
+    <div class="container-fluid">
+      <h3 style="color:rgb(153, 50, 204);margin-top:0%"><strong>miRNA Exploration</strong></h3>
+      <div class="container col-xs-12">
+        <p>
+          The first tab under the CERINA framework for circRNA functional enrichment analysis provides users with an interface to explore miRNAs interacting with a selected circRNA. An interactive table is displayed showing MRE, MRE per KB, pareto score, and tissue expression for each miRNA in the network. Users can view miRNA expression bar plots by clicking on an miRNA. By default, all miRNAs with positive pareto score are included in the network and used in the permutation based gene test, which is used to select significant genes for functional enrichment. Users can view the network in a pop-up window by clicking on the "View Network" button.
+        </p>
+        <br>
+        <div class = "row">
+          <div class = "col-xs-6">
+            <img src="functional_enrichment_mirna_exploration_table.jpg" width = "100%" height = "auto">
+          </div>
+          <div class = "col-xs-6">
+            <img src="functional_enrichment_mirna_exploration_figure.jpg" width = "100%" height = "auto">
+          </div>
+        </div>
+        <p>
+          <br>
+          Some circRNAs interact with many miRNAs and it may be desirable to run the permutation test using a filtered selection of miRNAs (e.g. top 10) rather than the whole set. Users can accomplish this by highlighting (clicking on) the desired rows in the table, which correspondingly updates the network. After selecting the desired miRNAs, or if satisifed with the default, users can proceed to gene level testing. 
+        </p>
+        <br>
+      </div>
+      <div class="container col-xs-12">
+        <div class = "row">
+          <div class = "col-xs-6">
+            <img src="functional_enrichment_mirna_exploration_filtered_table.jpg" width="100%" height = "auto">
+          </div>
+          <div class = "col-xs-6">
+            <img src="functional_enrichment_mirna_exploration_filtered_figure.jpg" width="100%" height = "auto">
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="container-fluid">
+      <h3 style="color:rgb(153, 50, 204);margin-top:0%"><strong>Gene Level Test</strong></h3>
+      <div class="col-xs-12">
+        <p>
+          The central step to CERINA circRNA functional enrichment is the permutation based gene test. In this tab, a panel on the left side of the page displays the circRNA selected (along with additional annotations/parental gene) and the number of miRNAs to be included in the test. Users must click on the "Run Analysis" button to run the test. 
+        </p>
+        <p>
+          After testing is complete, a summary showing the number of significant genes at various thresholds is displayed as a table and figure. In the table, the "Unadjusted" column shows the number of genes surviving a given unadjusted p-value threshold, while the "FDR" column gives the number of genes surviving the FDR adjusted threshold. In addition to downloading the table, users are also able to download the gene list, which gives the p-value assigned to each gene.
+        </p>
+        <p>
+          The figure shows similar information as the table, but at all thresholds. The blue curve represents the number of significant genes as a function of unadjusted p-value while the red curve is the number of significant genes as a function of FDR adjusted p-value.
+        </p>
+        <br>
+      </div>
+      <div class="container col-xs-12">
+        <img src="functional_enrichment_gene_level_test_overview.jpg" width="75%">
+        <br>
+      </div>
+      <div class = "col-xs-12">
+        <br>
+        <p>
+          In addition to providing a summary of significant genes, a detailed table showing each miRNA-gene interaction is provided. The table shows the raw and FDR adjusted p-values for each gene, miRNA-gene interaction information (MRE, mirTarBase, pareto score), and circRNA-miRNA interaction details (MRE, MRE per KB, pareto score). The genes displayed in the table can be filtered using the "Gene p-value threshold", which defaults to .05.
+        </p>
+      </div>
+      <div class="container col-xs-12">
+        <img src="functional_enrichment_gene_level_test_interactions.jpg" width="75%">
+      </div>
+    </div>
+    <hr>
+    <div class="container-fluid">
+      <h3 style="color:rgb(153, 50, 204);margin-top:0%"><strong>Functional Enrichment</strong></h3>
+      <p>
+        Functional enrichment analysis is performed on this tab. The "Test Options" panel at the top of the page provides testing options for the user to specify, including selection of the functional sets to use for analysis (i.e. KEGG, GO BP, GO CC, GO MF) and p-value thresholds for the genes/functional terms. Users must click on the "Run Analysis" button to run the functional enrichment test.
+      </p>
+      <img src="functional_enrichment_test_options.jpg" width="75%">
+      <p>
+        <br>
+        After running the enrichment test, a table of results is displayed, which by default is summarized so that each row represents a functional term. However, users also have the option to categorize by miRNA or gene (i.e. each row represents an miRNA or gene). Additional flexibility to view the table in long form (i.e. each row represents a unique miRNA-gene-function interaction) is also provided via the "Display in long form?" check-box. This view provides more detailed information for each interaction. Please refer to the figures below for descriptions of the information provided in each of the views. 
+      </p>
+      <h4 style="margin-top:0%"><strong>Categorize by Function</strong></h4>
+      <p>
+        The default "Categorize by Function" view displays the resulting table summarized by functional term. In this view, users get a quick overview of the significant terms and the genes/miRNAs associated with them. When users click on a term, they are redirected to the "Figure" tab, which displays a network of the genes and miRNAs associated the selected term and the circRNA as the central hub. Additional drop-down menus allow the user to select a different functional term and/or select the miRNAs/genes they wish to include in the network. 
+      </p>
+      <div class="container-fluid">
+        <img src="functional_enrichment_categorize_by_function_table.jpg" width="75%" height = "100%">
+        <br>
+        <br>
+      </div>
+      <div class = "container-fluid">
+        <img src="functional_enrichment_categorize_by_function_figure_filtered.jpg" width="75%">
+        <br>
+        <br>
+      </div>
+      <hr>
+      <h4 style="margin-top:0%"><strong>Categorize by miRNA</strong></h4>
+      <p>
+        The "Categorize by miRNA" view displays the resulting table summarized by miRNA. In this view, users get a quick overview of the significant genes/functions associated with a particular miRNA. When users click on an miRNA, they are redirected to the "Figure" tab, which displays a network of the genes/functions associated with the selected miRNA and the circRNA as the central hub. Additional drop-down menus allow the user to select a different miRNA and/or select the functions/genes they wish to include in the network. 
+      </p>
+      <div class="container-fluid">
+        <img src="functional_enrichment_categorize_by_mirna_table.jpg" width="75%">
+        <br>
+        <br>
+      </div>
+      <div class = "container-fluid">
+        <img src="functional_enrichment_categorize_by_mirna_figure.jpg" width="75%">
+        <br>
+        <br>
+      </div>
+      <hr>
+      <h4 style="margin-top:0%"><strong>Categorize by Gene</strong></h4>
+       <p>
+        The "Categorize by Gene" view displays the resulting table summarized by gene. In this view, users get a quick overview of the miRNAs and significant functions associated with a particular gene. When users click on a gene, they are redirected to the "Figure" tab, which displays a network of the miRNAs/functions associated with the selected gene and the circRNA as the central hub. Additional drop-down menus allow the user to select a different gene and/or select the functions/miRNAs they wish to include in the network. 
+      </p>
+      <div class="container-fluid">
+        <img src="functional_enrichment_categorize_by_gene_table.jpg" width="75%">
+        <br>
+        <br>
+      </div>
+      <div class = "container-fluid">
+        <img src="functional_enrichment_categorize_by_gene_figure.jpg" width="75%">
+        <br>
+        <br>
+      </div>
+      <hr>
+      <h4 style="margin-top:0%"><strong>Long form</strong></h4>
+       <p>
+        The "Display table in long form" option provides the most detailed view since each row represents a unique miRNA-gene-function. In this view, users are able to see all the information associated with a particular functional term, gene, miRNA-gene interaction, and circRNA-miRNA interaction. Colored and labeled headers are provided to make interpretation of the information straightforward. 
+      </p>
+      <div class="container-fluid">
+        <img src="functional_enrichment_long_form.jpg" width="75%">
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+
+</body>
+</html>
