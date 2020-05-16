@@ -153,7 +153,7 @@ server <- function(input, output, session) {
     if(is.null(expressionProfileData())){return(NULL)}
     ylabel <- expressionProfile()$ylabel
     if(isTruthy(input$selectCirc) & length(unique(expressionProfileData()$circRNA)) > 1){
-      p <- ggplot(filter(expressionProfile()$profile, !!expressionProfile()$profile$circRNA == input$selectCirc), aes(x = Tissue, y = Expression)) + 
+      p <- ggplot(filter(expressionProfile()$profile, !!sym("circRNA") == input$selectCirc), aes(x = Tissue, y = Expression)) + 
         stat_summary(geom = "bar", aes(fill = Tissue), width = .4) + 
         scale_fill_manual(values = tissue_colors) + ylab(ylabel) +
         theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.text = element_text(size = 12), axis.title = element_text(size = 14),
