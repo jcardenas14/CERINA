@@ -13,7 +13,7 @@ ui <- div(id = "main_content",
                         ),
                         
                         body <-  dashboardBody(
-                          includeScript("helper_functions.js"),
+                          includeScript("www/helper_functions.js"),
                           useShinyjs(),
                           tags$head(
                             tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")
@@ -22,16 +22,16 @@ ui <- div(id = "main_content",
                             tabItem("documentation",
                                     tabBox(title = "", id = "documentationTabs", width = 12,
                                            tabPanel(strong("Welcome to CERINA"), icon = icon("info"),
-                                                    includeHTML("welcome.html")
+                                                    includeHTML("www/html/welcome.html")
                                            ),
                                            tabPanel(strong("Data Exploration"), icon = icon("line-chart"),
-                                                    includeHTML("dataExploration.html")
+                                                    includeHTML("www/html/dataExploration.html")
                                            ),
                                            tabPanel(strong("miRNA-circRNA Network"), icon = icon("project-diagram"),
-                                                    includeHTML("mirnaCircNetwork.html")
+                                                    includeHTML("www/html/mirnaCircNetwork.html")
                                            ),
                                            tabPanel(strong("Functional Enrichment"), icon = icon("chart-bar"),
-                                                    includeHTML("functionalEnrichment.html")
+                                                    includeHTML("www/html/functionalEnrichment.html")
                                            )
                                     )
                             ),
