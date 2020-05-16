@@ -1,0 +1,148 @@
+p {
+  font-size: 16px;
+}
+.content-wrapper, .right-side {
+  background: #ffffff; 
+  overflow-y: auto
+}
+.skin-blue .main-header .navbar {
+  background-color: #241c49
+}
+.skin-blue .left-side, .skin-blue .main-sidebar, .skin-blue .wrapper {
+  background-color: #2c343a
+}
+.skin-blue .main-header .logo {
+  background-color: #241c49; 
+  color: #ffffff
+}
+.skin-blue .main-header .logo:hover {
+  background-color: #ffffff; 
+  color: #241c49
+}
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+  background-color: #ffffff; 
+  color: #241c49
+}
+.skin-blue .sidebar-menu {
+  color: #ffffff
+}
+.skin-blue .sidebar-menu>li.active>a {
+  background: #767381; 
+  border-left-color: #1a162d; 
+  color: #ffffff
+}
+.skin-blue .sidebar-menu>li:hover>a {
+  background: #ffffff; 
+  border-left-color: #1a162d; 
+  color: #241c49
+}
+.box.box-solid.box-primary {
+  border: 1px solid #0000000d
+}
+.box.box-primary {
+  border-top-color: #241c49
+}
+.box.box-solid.box-primary>.box-header {
+  background: #241c49
+}
+.nav-tabs-custom>.nav-tabs>li.active {
+  border-top-color: #241c49
+}
+#unsupervisedTabs.nav.nav-tabs.shiny-tab-input.shiny-bound-input>.nav-tabs-custom>.nav-tabs>li>a, 
+.nav-tabs-custom>.nav-tabs>li>a:hover {
+  background-color: #7d7799; 
+  color: #ffffff
+}
+#rnaDendrogram.shiny-plot-output.shiny-bound-output {
+  height: 100% !important
+}
+#mirnaDendrogram.shiny-plot-output.shiny-bound-output {
+  height: 100% !important
+}
+#circDendrogram.shiny-plot-output.shiny-bound-output {
+  height: 100% !important
+}
+#rnaExpressionProfilePlot.shiny-plot-output.shiny-bound-output {
+  height: auto !important
+}
+#mirnaExpressionProfilePlot.shiny-plot-output.shiny-bound-output {
+  height: auto !important
+}
+#circExpressionProfilePlot.shiny-plot-output.shiny-bound-output {
+  height: auto !important
+}
+#correlationScatterPlot.shiny-plot-output.shiny-bound-output {
+  height: auto !important
+}
+#networkBox {
+  height: auto !important
+}
+.box-body {
+  width: 100%
+}
+.shiny-input-container:not(.shiny-input-container-inline) {
+  width: 100%
+}
+.btn-default {
+  background-color: #4f4c4c; 
+  opacity: .8; 
+  color: #ffffff
+}
+.btn-default:hover {
+  background-color: #4f4c4c; 
+  opacity: .8; 
+  color: #ffffff
+}
+.btn-default:active {
+  background-color: #4f4c4c; 
+  opacity: .8; 
+  color: #ffffff
+}
+.btn-default:focus {
+  background-color: #4f4c4c; 
+  opacity: .8; 
+  color: #ffffff
+}                    
+.btn-default:active:focus {
+  background-color: #4f4c4c; 
+  opacity: .8; 
+  color: #ffffff
+}
+.btn-default:active:hover {
+  background-color: #4f4c4c; 
+  opacity: .8; 
+  color: #ffffff
+}
+.btn {
+  border-radius: .5rem; 
+  border-color: #4f4c4c
+}
+.btn.btn-mini {
+  border-color: white
+}
+.fa-info-circle {
+  background-color: white; 
+  color: black
+}
+.panel panel-default {
+  aria-expanded:'true'
+}
+.modal-dialog{
+  margin: 0px; 
+  padding-left: 15%; 
+  padding-right: 15%; 
+  padding-top: 5%; 
+  width: 100%
+}
+.shiny-notification{
+  position: fixed; 
+  top: 90%; 
+  left: 80%; 
+  right: 2%; 
+  background: #241c49; 
+  color: white
+}
+
+
+
+
