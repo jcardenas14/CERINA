@@ -496,6 +496,7 @@ server <- function(input, output, session) {
   }) 
   
   circForFuncAnalysis <- reactive({
+    req(input$circForAnalysis)
     ids <- annots[annots$circRNA %in% colnames(circ_mirna_mat),]
     if(isTruthy(input$selectCircForAnalysis) & length(unique(ids[ids$gene_symbol %in% input$circForAnalysis,]$circRNA)) > 1){
       circ.id <- annotationIdentifier(id = input$selectCircForAnalysis, id.map = ids, default.ids = colnames(circ_mirna_mat), id.group = "circ")
@@ -506,10 +507,12 @@ server <- function(input, output, session) {
   })
   
   output$circMultipleMapping <- renderUI({
+    req(input$circForAnalysis)
     dat <- annots[annots$gene_symbol %in% input$circForAnalysis,]
     if(length(unique(dat$circRNA)) >= 1 & !is.null(input$circForAnalysis)){
       return(
-        selectizeInput("selectCircForAnalysis", "circRNA by Position", choices = unique(dat$circRNA), multiple = FALSE)
+        selectizeInput("selectCircForAnalysis", "circRNA by Position", choices = unique(dat$circRNA), multiple = TRUE,
+                       selected = unique(dat$circRNA)[1],options = list(maxItems = 1, maxOptions = 500))
       )
     } else{
       return(NULL)
@@ -517,6 +520,7 @@ server <- function(input, output, session) {
   })
   
   circNetworkData <- reactive({
+    req(circForFuncAnalysis())
     edges <- scores_circ_mirna[scores_circ_mirna$circRNA %in% circForFuncAnalysis(),] %>%
       select(circRNA, miRNA, MRE, MRE.per.kb, Score) %>%
       rename(from = circRNA, to = miRNA) %>%
@@ -573,6 +577,7 @@ server <- function(input, output, session) {
   })
   
   circMirnaNetworkData <- reactive({
+    req(circNetworkData())
     dat <- circNetworkData()$edges[,2:5] %>% 
       rename(miRNA = to)
     dat$MRE.per.kb <- as.numeric(formatC(dat$MRE.per.kb, digits = 4))
@@ -675,6 +680,7 @@ server <- function(input, output, session) {
   })
   
   output$circSelected <- renderUI({
+    req(circForFuncAnalysis())
     ids <- annots[annots$circRNA %in% colnames(circ_mirna_mat),]
     if(isTruthy(input$selectCircForAnalysis) & length(unique(ids[ids$gene_symbol %in% input$circForAnalysis,]$circRNA)) > 1){
       HTML(paste("<h5><strong>Position</strong><br>",input$selectCircForAnalysis,"</h5>"))
@@ -685,6 +691,7 @@ server <- function(input, output, session) {
   })
   
   output$circBaseID <- renderUI({
+    req(circForFuncAnalysis())
     ids <- annots[annots$circRNA %in% colnames(circ_mirna_mat),]
     if(isTruthy(input$selectCircForAnalysis) & length(unique(ids[ids$gene_symbol %in% input$circForAnalysis,]$circRNA)) > 1){
       circBaseID <- annots$circBase_ID[annots$circRNA == input$selectCircForAnalysis]
@@ -696,6 +703,7 @@ server <- function(input, output, session) {
   })
   
   output$circAtlasID <- renderUI({
+    req(circForFuncAnalysis())
     ids <- annots[annots$circRNA %in% colnames(circ_mirna_mat),]
     if(isTruthy(input$selectCircForAnalysis) & length(unique(ids[ids$gene_symbol %in% input$circForAnalysis,]$circRNA)) > 1){
       circAtlasID <- annots$circAtlas_ID[annots$circRNA == input$selectCircForAnalysis]
@@ -707,6 +715,7 @@ server <- function(input, output, session) {
   })
   
   output$ciri2ID <- renderUI({
+    req(circForFuncAnalysis())
     ids <- annots[annots$circRNA %in% colnames(circ_mirna_mat),]
     if(isTruthy(input$selectCircForAnalysis) & length(unique(ids[ids$gene_symbol %in% input$circForAnalysis,]$circRNA)) > 1){
       ciri2ID <- annots$ciri2_ID[annots$circRNA == input$selectCircForAnalysis]
@@ -718,6 +727,7 @@ server <- function(input, output, session) {
   })
   
   output$parentalGeneSymbol <- renderUI({
+    req(circForFuncAnalysis())
     ids <- annots[annots$circRNA %in% colnames(circ_mirna_mat),]
     if(isTruthy(input$selectCircForAnalysis) & length(unique(ids[ids$gene_symbol %in% input$circForAnalysis,]$circRNA)) > 1){
       parentalGeneSymbol <- annots$gene_symbol[annots$circRNA == input$selectCircForAnalysis]
@@ -729,6 +739,7 @@ server <- function(input, output, session) {
   })
   
   output$numberMirnasSelected <- renderUI({
+    req(circForFuncAnalysis())
     number.mirnas <- nrow(circNetworkData()$edges)
     if(!is.null(mirnasSelected())){
       number.mirnas <- length(mirnasSelected())
@@ -1514,6 +1525,7 @@ server <- function(input, output, session) {
   })
   
   observe({
+    req(circForFuncAnalysis())
     req(circFunResTableLong())
     if(input$categorizeBy == "miRNA"){
       output$mirnaExpressionTitle <- renderUI({
