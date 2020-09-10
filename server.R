@@ -932,24 +932,73 @@ server <- function(input, output, session) {
   
   categorize <- reactiveVal(NULL)
   runFuncCounter <- reactiveVal(0)
+  runGeneCounter <- reactiveVal(0)
   
   observeEvent(input$runFuncAnalysis,{
     counter <- runFuncCounter() + 1
     runFuncCounter(counter)
   })
   
-  observeEvent(if(runFuncCounter() == 0){
-    return(NULL)
-  } else{
-    input$categorizeBy
-  }, {
-    categorize(input$categorizeBy)
+  observeEvent(input$runGeneAnalysis,{
+    counter <- runGeneCounter() + 1
+    runGeneCounter(counter)
   })
   
-  observeEvent(input$runGeneAnalysis, {
-    req(geneMirnaTable())
-    runFuncCounter(0)
-    show(selector = '#enrichmentWorkflow li a[data-value="func_enrich_val"]')
+  observe({
+    if(runGeneCounter() == 0){
+      runFuncCounter(0)
+      output$funcEnrichUI <- renderUI({
+        HTML(paste("<h4><strong>Please run gene level test first (previous tab)!</strong><br></h4>"))
+      })
+    } else{
+      runFuncCounter(0)
+      output$funcEnrichUI <- renderUI({
+        req(geneMirnaTable())
+        tagList(
+          fluidRow(
+            div(class = "container-fluid",
+                bsCollapse(multiple = FALSE, open = "options",
+                           bsCollapsePanel("Test Options", value = "options",
+                                           div(class = "row",
+                                               div(class = "col-xs-3",
+                                                   selectizeInput("termType", "Select Function type:", choices = c("KEGG","GO BP","GO CC","GO MF"), selected = "KEGG", multiple = FALSE),
+                                                   actionButton("runFuncAnalysis", "Run Analysis", icon = icon("play"), style = "background: rgb(153, 50, 204)")
+                                               ),
+                                               div(class = "col-xs-3",
+                                                   numericInput("genePvalThresh", "Gene p-value threshold", value = .05, min = 0, max = 1, step = .01),
+                                                   checkboxInput("fdrAdjustedGenes", "FDR adjusted", FALSE)
+                                               ),
+                                               div(class = "col-xs-3",
+                                                   numericInput("termPvalThresh", "Function p-value threshold", value = .05, min = 0, max = 1, step = .01),
+                                                   checkboxInput("fdrAdjustedTerms", "FDR adjusted", FALSE)
+                                               )
+                                           ),
+                                           style = "default") 
+                )
+            )
+          ),
+          fluidRow(
+            box(title = strong("Results"), width = 12, status = "primary", solidHeader = TRUE,
+                tabBox(title = "", id = "functionalEnrichmentTabs", width = 12,
+                       tabPanel("Table",
+                                selectizeInput("categorizeBy", "Categorize by:", choices = c("Function", "miRNA", "Gene"), 
+                                               selected = "Function", multiple = FALSE, width = "25%"),
+                                checkboxInput("longForm", "Display table in long form?", FALSE),
+                                downloadButton('downloadFunctionalResults', 'Download'),
+                                br(),
+                                br(),
+                                DT::DTOutput("functionalResults")
+                       ),
+                       tabPanel("Figure",
+                                uiOutput("selectFunctionOrMirna"),
+                                uiOutput("selectedMiRnaExpression")
+                       ) 
+                )
+            )
+          )
+        )
+      })
+    }
   })
   
   circFuncAnalysis <- eventReactive(c(runFuncCounter()),{

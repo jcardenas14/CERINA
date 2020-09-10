@@ -302,48 +302,8 @@ ui <- div(id = "main_content",
                                                       ) 
                                                     )
                                            ),
-                                           tabPanel(strong('Functional Enrichment'), icon = icon("angle-double-right"), value = 'func_enrich_val',
-                                                    fluidRow(
-                                                      div(class = "container-fluid",
-                                                          bsCollapse(multiple = FALSE, open = "options",
-                                                                     bsCollapsePanel("Test Options", value = "options",
-                                                                                     div(class = "row",
-                                                                                         div(class = "col-xs-3",
-                                                                                             selectizeInput("termType", "Select Function type:", choices = c("KEGG","GO BP","GO CC","GO MF"), selected = "KEGG", multiple = FALSE),
-                                                                                             actionButton("runFuncAnalysis", "Run Analysis", icon = icon("play"), style = "background: rgb(153, 50, 204)")
-                                                                                         ),
-                                                                                         div(class = "col-xs-3",
-                                                                                             numericInput("genePvalThresh", "Gene p-value threshold", value = .05, min = 0, max = 1, step = .01),
-                                                                                             checkboxInput("fdrAdjustedGenes", "FDR adjusted", FALSE)
-                                                                                         ),
-                                                                                         div(class = "col-xs-3",
-                                                                                             numericInput("termPvalThresh", "Function p-value threshold", value = .05, min = 0, max = 1, step = .01),
-                                                                                             checkboxInput("fdrAdjustedTerms", "FDR adjusted", FALSE)
-                                                                                         )
-                                                                                     ),
-                                                                                     style = "default") 
-                                                          )
-                                                      )
-                                                    ),
-                                                    fluidRow(
-                                                      box(title = strong("Results"), width = 12, status = "primary", solidHeader = TRUE,
-                                                          tabBox(title = "", id = "functionalEnrichmentTabs", width = 12,
-                                                                 tabPanel("Table",
-                                                                          selectizeInput("categorizeBy", "Categorize by:", choices = c("Function", "miRNA", "Gene"), 
-                                                                                         selected = "Function", multiple = FALSE, width = "25%"),
-                                                                          checkboxInput("longForm", "Display table in long form?", FALSE),
-                                                                          downloadButton('downloadFunctionalResults', 'Download'),
-                                                                          br(),
-                                                                          br(),
-                                                                          DT::DTOutput("functionalResults")
-                                                                 ),
-                                                                 tabPanel("Figure",
-                                                                          uiOutput("selectFunctionOrMirna"),
-                                                                          uiOutput("selectedMiRnaExpression")
-                                                                 ) 
-                                                          )
-                                                      )
-                                                    )
+                                           tabPanel(strong('Functional Enrichment'), icon = icon("angle-double-right"), #value = 'func_enrich_val',
+                                                    uiOutput("funcEnrichUI")
                                            )
                                     )
                             )
