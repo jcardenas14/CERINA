@@ -4,7 +4,18 @@
 ------------------------------------------------------------------------
 
 <img src="www/images/cerina_overview_figure.jpg" style="width:75.0%" />  
-  
+
+### **Installation**
+1. Install the latest version of R (4.0.2) 
+2. Install `CERINA` dependencies from CRAN:
+```r
+install.packages(c("shiny", "shinydashboard", "shinyjs", "shinycssloaders", "shinyBS", "DT", "tidyverse", 
+"dendextend", "visNetwork", "heatmaply", "Matrix", "fastcluster", "htmltools", "reshape2", "igraph"))
+```
+3. `CERINA` can be run with the following command:
+```r
+shiny::runGitHub("jcardenas14/CERINA")
+```
 
 ### **Introduction**
 
