@@ -1,3 +1,5 @@
+[![GitHub](https://img.shields.io/github/license/jcardenas14/CERINA.svg?color=dark-green)](https://github.com/jcardenas14/CERINA/blob/master/LICENSE)
+
 <span style="color:rgb(153, 50, 204);">**C**</span>OMPETING <span style="color:rgb(153, 50, 204);">**E**</span>NDOGENOUS <span style="color:rgb(153, 50, 204);">**R**</span>NA for <span style="color:rgb(153, 50, 204);">**IN**</span>TEGRATIVE <span style="color:rgb(153, 50, 204);">**A**</span>NNOTATIONS
 ==============================================================================================================================================================================================================================================================================================================
 
