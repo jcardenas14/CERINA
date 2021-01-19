@@ -894,12 +894,6 @@ server <- function(input, output, session) {
   
   output$downloadGeneMirnaTable <- downloadHandler(
     filename = function() {
-      gene_mirna_tab <- geneMirnaTable()
-      if(input$geneLevelTestFdrAdjusted){
-        gene_mirna_tab <- gene_mirna_tab[gene_mirna_tab$fdr <= input$geneLevelTestThresh, ] 
-      } else{
-        gene_mirna_tab <- gene_mirna_tab[gene_mirna_tab$pvalue <= input$geneLevelTestThresh, ]
-      }
       ids <- annots[annots$circRNA %in% colnames(circ_mirna_mat),]
       if(isTruthy(input$selectCircForAnalysis) & length(unique(ids[ids$gene_symbol %in% input$circForAnalysis,]$circRNA)) > 1){
         paste(circForFuncAnalysis(), "_gene_mirna_table", '.csv', sep='')
@@ -908,6 +902,12 @@ server <- function(input, output, session) {
       }
     },
     content = function(con) {
+      gene_mirna_tab <- geneMirnaTable()
+      if(input$geneLevelTestFdrAdjusted){
+        gene_mirna_tab <- gene_mirna_tab[gene_mirna_tab$fdr <= input$geneLevelTestThresh, ] 
+      } else{
+        gene_mirna_tab <- gene_mirna_tab[gene_mirna_tab$pvalue <= input$geneLevelTestThresh, ]
+      }
       write.csv(gene_mirna_tab, con, row.names = FALSE)
     }
   )
